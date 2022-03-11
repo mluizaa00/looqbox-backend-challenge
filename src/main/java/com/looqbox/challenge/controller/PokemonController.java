@@ -4,6 +4,7 @@ import com.looqbox.challenge.model.Pokemon;
 import com.looqbox.challenge.model.dto.PokemonEntryDto;
 import com.looqbox.challenge.service.PokemonService;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,10 @@ public class PokemonController {
   @GetMapping
   @ResponseBody
   public ResponseEntity<PokemonEntryDto> getByName(@RequestParam final String name) {
-    final List<Pokemon> pokemonList = pokemonService.getPokemonByAlias(name);
+    final List<String> pokemonList = pokemonService.getPokemonByAlias(name).stream()
+        .map(Pokemon::getName)
+        .collect(Collectors.toList());
+
     return ResponseEntity.status(HttpStatus.OK)
         .body(new PokemonEntryDto(pokemonList));
   }

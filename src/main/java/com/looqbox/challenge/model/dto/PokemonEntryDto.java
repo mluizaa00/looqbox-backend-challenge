@@ -1,6 +1,5 @@
 package com.looqbox.challenge.model.dto;
 
-import com.looqbox.challenge.model.Pokemon;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +8,6 @@ import lombok.Data;
 @AllArgsConstructor
 public final class PokemonEntryDto {
 
-  private final List<Pokemon> result;
+  private final List<String> result;
 
 }

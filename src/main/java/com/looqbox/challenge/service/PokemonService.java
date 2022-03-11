@@ -2,12 +2,20 @@ package com.looqbox.challenge.service;
 
 import com.looqbox.challenge.factory.PokemonFactory;
 import com.looqbox.challenge.model.Pokemon;
+import com.looqbox.challenge.model.comparator.PokemonAlphabeticalComparator;
+import com.looqbox.challenge.model.comparator.PokemonLengthComparator;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * The PokemonService is responsible
+ * for receiving the parameter from the
+ * endpoint, sorting and sending a List
+ * as a response.
+ */
 @Service
 public class PokemonService {
 
@@ -17,7 +25,8 @@ public class PokemonService {
   public List<Pokemon> getPokemonByAlias(final String name) {
     return factory.getPokemonRegistry().values().stream()
         .filter(pokemon -> pokemon.getName().contains(name))
-        .sorted(Comparator.comparing(Pokemon::getName))
+        .sorted(new PokemonAlphabeticalComparator())
+        .sorted(new PokemonLengthComparator())
         .collect(Collectors.toList());
   }
 
