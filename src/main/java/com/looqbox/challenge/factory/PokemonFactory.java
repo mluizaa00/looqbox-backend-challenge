@@ -2,7 +2,7 @@ package com.looqbox.challenge.factory;
 
 import com.looqbox.challenge.model.Pokemon;
 import com.looqbox.challenge.model.PokemonsResponse;
-import com.looqbox.challenge.service.PokemonService;
+import com.looqbox.challenge.service.RestService;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public final class PokemonFactory {
 
   @Autowired
-  private PokemonService service;
+  private RestService service;
 
   private final Map<String, Pokemon> pokemonRegistry;
 

@@ -1,23 +1,24 @@
 package com.looqbox.challenge.service;
 
-import com.looqbox.challenge.model.PokemonsResponse;
+import com.looqbox.challenge.factory.PokemonFactory;
+import com.looqbox.challenge.model.Pokemon;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
-public final class PokemonService {
-
-  @Value("${pokeapi.url}")
-  public static String POKEMON_API_URL;
+public class PokemonService {
 
   @Autowired
-  private RestTemplate restTemplate;
+  private PokemonFactory factory;
 
-  public PokemonsResponse getAll() {
-    return restTemplate
-        .getForObject(POKEMON_API_URL + "/pokemon?offset=0&limit=1", PokemonsResponse.class);
+  public List<Pokemon> getPokemonByAlias(final String name) {
+    return factory.getPokemonRegistry().values().stream()
+        .filter(pokemon -> pokemon.getName().contains(name))
+        .sorted(Comparator.comparing(Pokemon::getName))
+        .collect(Collectors.toList());
   }
 
 }

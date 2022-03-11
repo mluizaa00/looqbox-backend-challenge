@@ -1,6 +1,10 @@
 package com.looqbox.challenge.controller;
 
+import com.looqbox.challenge.model.Pokemon;
 import com.looqbox.challenge.model.dto.PokemonEntryDto;
+import com.looqbox.challenge.service.PokemonService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/pokemons")
 public class PokemonController {
 
+  @Autowired
+  private PokemonService pokemonService;
+
   @GetMapping
   @ResponseBody
   public ResponseEntity<PokemonEntryDto> getByName(@RequestParam final String name) {
-    return ResponseEntity.status(HttpStatus.OK).build();
+    final List<Pokemon> pokemonList = pokemonService.getPokemonByAlias(name);
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(new PokemonEntryDto(pokemonList));
   }
 
 
