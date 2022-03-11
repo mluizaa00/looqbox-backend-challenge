@@ -21,26 +21,29 @@ dependencies {
 
     def springVersion = "2.6.2"
 
+    def flogger = "com.google.flogger:flogger"
+    def floggerVersion = "0.7.4"
+
     /**
      * Spring boot dependencies
      */
     implementation "${springBoot}-starter-web:${springVersion}"
+    implementation "${springBoot}-starter-webflux:${springVersion}"
+
     developmentOnly "${springBoot}-devtools:${springVersion}"
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation "${springBoot}-starter-test:${springVersion}"
 
     /**
      * Logging dependencies
      */
-    implementation "com.google.flogger:flogger:0.7.4"
-    implementation "com.google.flogger:flogger-system-backend:0.7.4"
+    implementation "${flogger}:${floggerVersion}"
+    implementation "${flogger}-system-backend:${floggerVersion}"
 
     /**
      * Annotation processors
      */
     compileOnly lombok
     annotationProcessor lombok
-
-    testImplementation "${springBoot}-starter-test:${springVersion}"
 }
 
 tasks.named('test') {

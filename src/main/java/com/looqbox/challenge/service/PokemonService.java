@@ -5,7 +5,9 @@ import com.looqbox.challenge.model.Pokemon;
 import com.looqbox.challenge.model.PokemonsResponse;
 import com.looqbox.challenge.model.comparator.PokemonAlphabeticalComparator;
 import com.looqbox.challenge.model.comparator.PokemonLengthComparator;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,20 @@ public class PokemonService {
         .filter(pokemon -> pokemon.getName().contains(name))
         .sorted(new PokemonAlphabeticalComparator())
         .sorted(new PokemonLengthComparator())
+        .collect(Collectors.toList());
+  }
+
+  public List<Pokemon> addHighlight(final List<Pokemon> beforeList, final String parameter) {
+    return beforeList.stream()
+        .peek(pokemon -> {
+          final StringBuilder builder = new StringBuilder();
+
+          builder.append("<pre>");
+          builder.append(parameter);
+          builder.append("</pre>");
+
+          pokemon.setHighlight(pokemon.getName().replace(parameter, builder));
+        })
         .collect(Collectors.toList());
   }
 

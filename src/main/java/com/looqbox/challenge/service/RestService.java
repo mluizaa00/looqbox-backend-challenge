@@ -1,6 +1,6 @@
 package com.looqbox.challenge.service;
 
-import com.looqbox.challenge.exception.RestException;
+import com.looqbox.challenge.exception.PokemonGetException;
 import com.looqbox.challenge.model.PokemonsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public final class RestService {
 
     return responseMono.blockOptional().stream()
         .findFirst()
-        .orElseThrow(() -> new RestException("An invalid response has been received."));
+        .orElseThrow(() -> new PokemonGetException("An invalid response has been received."));
   }
 
 }

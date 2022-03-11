@@ -1,16 +1,20 @@
 package com.looqbox.challenge.model.dto;
 
+import com.looqbox.challenge.model.Pokemon;
 import java.io.Serializable;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class PokemonEntryDto implements Serializable {
+public final class PokemonGetDto implements Serializable {
 
-  private List<String> result;
+  private int count;
+  private List<Pokemon> result;
 
 }

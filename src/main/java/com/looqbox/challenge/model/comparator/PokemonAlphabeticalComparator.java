@@ -11,7 +11,7 @@ public final class PokemonAlphabeticalComparator implements Comparator<Pokemon> 
 
   @Override
   public int compare(final Pokemon pokemonOne, final Pokemon pokemonTwo) {
-    return pokemonOne.getName().compareTo(pokemonTwo.getName());
+    return pokemonOne.getName().compareToIgnoreCase(pokemonTwo.getName());
   }
 
 }

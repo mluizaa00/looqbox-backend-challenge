@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class Pokemon implements Serializable {
+public class Pokemon implements Serializable {
 
   private String name;
   private String url;
+  private String highlight;
 
 }
