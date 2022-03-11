@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "pokeapi.url",
+      "type": "java.lang.String",
+      "description": "The URL for accessing the PokeAPI."
+  }
+] }
