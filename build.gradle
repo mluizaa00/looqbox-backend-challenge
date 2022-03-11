@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.6.3'
+    id "org.sonarqube" version "3.3"
+}
+
+group = 'com.looqbox'
+version = '1.0.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    def lombok = "org.projectlombok:lombok:1.18.22"
+    def springBoot = "org.springframework.boot:spring-boot"
+
+    def springVersion = "2.6.2"
+
+    /**
+     * Spring boot dependencies
+     */
+    implementation "${springBoot}-starter-web:${springVersion}"
+    developmentOnly "${springBoot}-devtools:${springVersion}"
+
+    /**
+     * Annotation processors
+     */
+    compileOnly lombok
+    annotationProcessor lombok
+
+    testImplementation "${springBoot}-starter-test:${springVersion}"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
