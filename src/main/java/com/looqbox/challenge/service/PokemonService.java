@@ -2,6 +2,7 @@ package com.looqbox.challenge.service;
 
 import com.looqbox.challenge.factory.PokemonFactory;
 import com.looqbox.challenge.model.Pokemon;
+import com.looqbox.challenge.model.PokemonsResponse;
 import com.looqbox.challenge.model.comparator.PokemonAlphabeticalComparator;
 import com.looqbox.challenge.model.comparator.PokemonLengthComparator;
 import java.util.Comparator;
@@ -28,6 +29,10 @@ public class PokemonService {
         .sorted(new PokemonAlphabeticalComparator())
         .sorted(new PokemonLengthComparator())
         .collect(Collectors.toList());
+  }
+
+  public void update(final PokemonsResponse response) {
+    response.getResults().forEach(pokemon -> factory.getPokemonRegistry().put(pokemon.getName(), pokemon));
   }
 
 }

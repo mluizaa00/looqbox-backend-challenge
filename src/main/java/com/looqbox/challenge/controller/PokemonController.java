@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class PokemonController {
 
   @Autowired
-  private PokemonService pokemonService;
+  private PokemonService service;
 
   @GetMapping
   @ResponseBody
-  public ResponseEntity<PokemonEntryDto> getByName(@RequestParam final String name) {
-    final List<String> pokemonList = pokemonService.getPokemonByAlias(name).stream()
+  public ResponseEntity<PokemonEntryDto> getByName(@RequestParam(name = "q") final String name) {
+    final List<String> pokemonList = service.getPokemonByAlias(name).stream()
         .map(Pokemon::getName)
         .collect(Collectors.toList());
 
