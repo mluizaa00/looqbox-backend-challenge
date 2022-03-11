@@ -1,11 +1,11 @@
 package com.looqbox.challenge.service;
 
-import com.looqbox.challenge.model.Pokemon;
+import com.looqbox.challenge.exception.RestException;
 import com.looqbox.challenge.model.PokemonsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 /**
  * The RestService is responsible for accessing
@@ -15,15 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public final class RestService {
 
-  // @Value("${pokeapi.url}") TODO: Check this out why it isn't working on start
-  public static final String POKEMON_API_URL;
-
-  static {
-    POKEMON_API_URL = "https://pokeapi.co/api/v2/";
-  }
-
   @Autowired
-  private RestTemplate restTemplate;
+  private WebClient webClient;
 
   /**
    * This method connects with the
@@ -34,13 +27,14 @@ public final class RestService {
    * @return PokemonsResponse
    */
   public PokemonsResponse getAll() {
-    return restTemplate
-        .getForObject(POKEMON_API_URL + "/pokemon?offset=0&limit=10000", PokemonsResponse.class);
-  }
+    final Mono<PokemonsResponse> responseMono = webClient.get()
+        .uri("/pokemon?offset=0&limit=10000")
+        .retrieve()
+        .bodyToMono(PokemonsResponse.class);
 
-//  public Pokemon get(final int id) {
-//    return restTemplate
-//        .getForObject(POKEMON_API_URL + "pokemon/" + id, )
-//  }
+    return responseMono.blockOptional().stream()
+        .findFirst()
+        .orElseThrow(() -> new RestException("An invalid response has been received."));
+  }
 
 }

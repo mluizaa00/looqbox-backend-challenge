@@ -26,6 +26,7 @@ dependencies {
      */
     implementation "${springBoot}-starter-web:${springVersion}"
     developmentOnly "${springBoot}-devtools:${springVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     /**
      * Logging dependencies
