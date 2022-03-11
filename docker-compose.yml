@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  pokemon-api:
+    container_name: "pokemon-api"
+    image: "pokemon-api"
+    ports:
+      - "13001:13001"
+    volumes:
+      - "/docker/pokemon-api:/var/lib/pokemon-api"
+    networks:
+      - "rest-network"
+
+networks:
+  rest-network:
+    name: "rest-network"
+    driver: bridge
