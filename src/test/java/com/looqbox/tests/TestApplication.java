@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.StringJoiner;
 import org.junit.jupiter.api.Test;
 
-public final class TestApplication {
+final class TestApplication {
 
   private static final List<Pokemon> POKEMON_LIST;
 
@@ -32,7 +32,7 @@ public final class TestApplication {
   }
 
   @Test
-  public void test() {
+  void test() {
     final List<Pokemon> pokemonList = new ArrayList<>(POKEMON_LIST);
     System.out.println("NON-SORTED LIST: " + join(pokemonList));
 

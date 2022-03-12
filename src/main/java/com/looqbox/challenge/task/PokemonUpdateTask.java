@@ -16,7 +16,7 @@ public final class PokemonUpdateTask implements Callable<CompletableFuture<Void>
   @Override
   public CompletableFuture<Void> call() {
     return CompletableFuture.runAsync(() -> {
-      final FluentLogger logger = FluentLogger.forEnclosingClass();
+      final var logger = FluentLogger.forEnclosingClass();
 
       final long start = System.currentTimeMillis();
       service.update(restService.getAll());

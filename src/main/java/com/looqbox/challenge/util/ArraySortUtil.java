@@ -5,6 +5,8 @@ import com.looqbox.challenge.model.comparator.PokemonAlphabeticalComparator;
 import com.looqbox.challenge.model.comparator.PokemonLengthComparator;
 import com.looqbox.challenge.model.type.ArraySortType;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * The algorithm chosen to be used was the Quick Sort
@@ -21,6 +23,7 @@ import java.util.List;
  * The loop is broken when the start index becomes the same or more
  * than the end index.
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ArraySortUtil {
 
   private static final PokemonAlphabeticalComparator ALPHABETICAL_COMPARATOR;

@@ -33,7 +33,7 @@ public class ChallengeApplication {
   @Async
   @EventListener(ApplicationReadyEvent.class)
   public void init() {
-    final PokemonUpdateTask updateTask = new PokemonUpdateTask(service, restService);
+    final var updateTask = new PokemonUpdateTask(service, restService);
     updateTask.call();
   }
 

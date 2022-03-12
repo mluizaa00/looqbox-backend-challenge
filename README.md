@@ -1,9 +1,15 @@
-###__________________________________
-(M. Luiza Prestes - Estágio Java)
+### __________________________________
 
+- Algorithm used: **Quicksort**
+- External programs used:
+  - Postman: HTTP request tests
+  - SonarQube: Code revision and QA
+
+Mainly the Services, Comparators, Algorithm and Dockerfile are documented on this project.
 ### How to utilize
 
-GET Endpoint: `/v1/pokemons/?q=xxxxxx`
+**GET** Endpoint: `/v1/pokemons/?q=xxxxxx`
+OBS: In case there is no parameter, it will return a list of all pokemons without the highlight.
 
 All the values from the endpoint are being sorted and comparated
 Alphabetically and Length.
@@ -30,7 +36,7 @@ As example for the request `/v1/pokemons/?q=pika`
 - Create the container `docker build -t pokemon-api .`
 - Run the container (default port: 13001) `docker-compose up`
 
-###__________________________________
+### __________________________________
 
 ### Would you like to work with us? Apply [here](https://app.pipefy.com/public_form/840222)!
 
