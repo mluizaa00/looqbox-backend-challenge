@@ -87,7 +87,7 @@ public final class ArraySortUtil {
       }
 
       // Uses the AlphabeticalComparator for checking both pokemon names
-      if (ALPHABETICAL_COMPARATOR.compare(list.get(current), center) <= 0) {
+      if (sortType == ArraySortType.ALPHABETICAL && ALPHABETICAL_COMPARATOR.compare(list.get(current), center) <= 0) {
         invertPosition(list, current, position);
         position++;
       }
