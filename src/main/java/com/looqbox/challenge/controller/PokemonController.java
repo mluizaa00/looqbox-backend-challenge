@@ -3,8 +3,10 @@ package com.looqbox.challenge.controller;
 import com.looqbox.challenge.model.Pokemon;
 import com.looqbox.challenge.model.dto.PokemonGetDto;
 import com.looqbox.challenge.service.PokemonService;
+import com.looqbox.challenge.service.impl.PokemonServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ public class PokemonController {
 
   @GetMapping
   @ResponseBody
+  @Cacheable(value = "pokemon-list")
   public ResponseEntity<PokemonGetDto> getByName(@RequestParam(name = "q") final String name) {
     final List<Pokemon> pokemonList = service.addHighlight(service.getPokemonByAlias(name), name);
     return ResponseEntity.status(HttpStatus.OK)

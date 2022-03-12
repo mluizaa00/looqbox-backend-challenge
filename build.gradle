@@ -34,6 +34,8 @@ dependencies {
     developmentOnly "${springBoot}-devtools:${springVersion}"
     testImplementation "${springBoot}-starter-test:${springVersion}"
 
+    implementation "${springBoot}-starter-cache:${springVersion}"
+
     /**
      * Logging dependencies
      */

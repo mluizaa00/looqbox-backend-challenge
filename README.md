@@ -26,7 +26,7 @@ As example for the request `/v1/pokemons/?q=pika`
 
 ### How to build
 
-- Run `gradle build`
+- Run `gradle shadowJar`
 - Create the container `docker build -t pokemon-api .`
 - Run the container (default port: 13001) `docker-compose up`
 
