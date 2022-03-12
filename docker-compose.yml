@@ -1,5 +1,16 @@
 version: '3.9'
 services:
+  redis:
+    image: "redis"
+    container_name: "redis"
+    restart: always
+    volumes:
+      - "/var/lib/docker/volumes/redis/_data"
+    ports:
+      - "45020:6379"
+    networks:
+      - "rest-network"
+    command: "redis-server --requirepass GUxU4^U>MIn{x?BCO?N#8X16|7cJbNKi"
   pokemon-api:
     container_name: "pokemon-api"
     image: "pokemon-api"
