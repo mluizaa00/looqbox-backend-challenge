@@ -8,6 +8,8 @@ public interface PokemonService {
 
   List<Pokemon> getPokemonByAlias(final String name);
 
+  List<Pokemon> getAll();
+
   List<Pokemon> addHighlight(final List<Pokemon> beforeList, final String parameter);
 
   void update(final PokemonsResponse response);

@@ -1,9 +1,6 @@
 package com.looqbox.challenge.exception;
 
-public class PokemonGetException extends RuntimeException {
-
-  public PokemonGetException() {
-  }
+public final class PokemonGetException extends RuntimeException {
 
   public PokemonGetException(final String message) {
     super(message);

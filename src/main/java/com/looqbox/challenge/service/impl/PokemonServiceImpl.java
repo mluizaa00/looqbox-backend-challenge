@@ -5,7 +5,9 @@ import com.looqbox.challenge.model.Pokemon;
 import com.looqbox.challenge.model.PokemonsResponse;
 import com.looqbox.challenge.model.comparator.PokemonAlphabeticalComparator;
 import com.looqbox.challenge.model.comparator.PokemonLengthComparator;
+import com.looqbox.challenge.model.type.ArraySortType;
 import com.looqbox.challenge.service.PokemonService;
+import com.looqbox.challenge.util.ArraySortUtil;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -30,11 +32,24 @@ public class PokemonServiceImpl implements PokemonService {
 
   @Override
   public List<Pokemon> getPokemonByAlias(final String name) {
-    return factory.getPokemonRegistry().values().stream()
+    final List<Pokemon> pokemonList = factory.getPokemonRegistry().values().stream()
         .filter(pokemon -> pokemon.getName().contains(name))
-        .sorted(new PokemonAlphabeticalComparator())
-        .sorted(new PokemonLengthComparator())
         .collect(Collectors.toList());
+
+    ArraySortUtil.quickSort(pokemonList, ArraySortType.ALPHABETICAL);
+    ArraySortUtil.quickSort(pokemonList, ArraySortType.LENGTH);
+
+    return pokemonList;
+  }
+
+  @Override
+  public List<Pokemon> getAll() {
+    final List<Pokemon> pokemonList = new ArrayList<>(factory.getPokemonRegistry().values());
+
+    ArraySortUtil.quickSort(pokemonList, ArraySortType.ALPHABETICAL);
+    ArraySortUtil.quickSort(pokemonList, ArraySortType.LENGTH);
+
+    return pokemonList;
   }
 
   @Override
