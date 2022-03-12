@@ -79,7 +79,7 @@ public final class ArraySortUtil {
     int position = start;
     for (int current = start; current < end; current++) {
       // Uses the LengthComparator for checking both pokemon names
-      if (sortType == ArraySortType.LENGTH && LENGTH_COMPARATOR.compare(list.get(current), center) >= 0) {
+      if (sortType == ArraySortType.LENGTH && LENGTH_COMPARATOR.compare(list.get(current), center) <= 0) {
         invertPosition(list, current, position);
         position++;
 
