@@ -3,6 +3,7 @@ package com.looqbox.challenge;
 import com.looqbox.challenge.service.PokemonService;
 import com.looqbox.challenge.service.RestService;
 import com.looqbox.challenge.task.PokemonUpdateTask;
+import java.util.concurrent.CompletableFuture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,7 +35,7 @@ public class ChallengeApplication {
   @EventListener(ApplicationReadyEvent.class)
   public void init() {
     final var updateTask = new PokemonUpdateTask(service, restService);
-    updateTask.call();
+    CompletableFuture.runAsync(updateTask);
   }
 
 }

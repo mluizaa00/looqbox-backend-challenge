@@ -8,23 +8,21 @@ import java.util.concurrent.CompletableFuture;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public final class PokemonUpdateTask implements Callable<CompletableFuture<Void>> {
+public final class PokemonUpdateTask implements Runnable {
 
   private final PokemonService service;
   private final RestService restService;
 
   @Override
-  public CompletableFuture<Void> call() {
-    return CompletableFuture.runAsync(() -> {
-      final var logger = FluentLogger.forEnclosingClass();
+  public void run() {
+    final var logger = FluentLogger.forEnclosingClass();
 
-      final long start = System.currentTimeMillis();
-      service.update(restService.getAll());
-      final long end = System.currentTimeMillis();
+    final long start = System.currentTimeMillis();
+    service.update(restService.getAll());
+    final long end = System.currentTimeMillis();
 
-      logger.atInfo()
-          .log("Took %s ms to update the Pokemon Registry via PokeAPI.", String.valueOf(end - start));
-    });
+    logger.atInfo()
+        .log("Took %s ms to update the Pokemon Registry via PokeAPI.", String.valueOf(end - start));
   }
 
 }
