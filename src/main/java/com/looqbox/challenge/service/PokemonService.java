@@ -48,7 +48,13 @@ public class PokemonService {
   }
 
   public void update(final PokemonsResponse response) {
-    response.getResults().forEach(pokemon -> factory.getPokemonRegistry().put(pokemon.getName(), pokemon));
+    response.getResults().forEach(pokemon -> {
+      if (pokemon.getName().contains("-")) {
+        return;
+      }
+
+      factory.getPokemonRegistry().put(pokemon.getName(), pokemon);
+    });
   }
 
 }

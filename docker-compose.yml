@@ -6,7 +6,7 @@ services:
     ports:
       - "13001:13001"
     volumes:
-      - "/docker/pokemon-api:/var/lib/pokemon-api"
+      - "/var/lib/docker/volumes/pokemon-api/_data"
     networks:
       - "rest-network"
 
