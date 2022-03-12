@@ -1,10 +1,6 @@
 # Select Java version and distribution
-FROM openjdk:11-jdk-alpine
+FROM adoptopenjdk/openjdk11:latest
 MAINTAINER Luiza Prestes <taeckls@gmail.com>
-
-# Spring commands
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
 
 # Move JAR file from target to use in the execution
 ARG JAR_FILE=target/*.jar

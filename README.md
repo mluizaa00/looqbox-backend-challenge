@@ -1,3 +1,37 @@
+###__________________________________
+(M. Luiza Prestes - Estágio Java)
+
+### How to utilize
+
+GET Endpoint: `/v1/pokemons/?q=xxxxxx`
+
+All the values from the endpoint are being sorted and comparated
+Alphabetically and Length.
+
+The return value contains the **Pokemon NAME, URL and HIGHLIGHT**.
+
+As example for the request `/v1/pokemons/?q=pika`
+```json
+{
+    "count": 1,
+    "result": [
+        {
+            "name": "pikachu",
+            "url": "https://pokeapi.co/api/v2/pokemon/25/",
+            "highlight": "<pre>pika</pre>chu"
+        }
+    ]
+}
+```
+
+### How to build
+
+- Run `gradle build`
+- Create the container `docker build -t pokemon-api .`
+- Run the container (default port: 13001) `docker-compose up`
+
+###__________________________________
+
 ### Would you like to work with us? Apply [here](https://app.pipefy.com/public_form/840222)!
 
 # Looqbox Backend Challenge
